@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cglimcla3gw4i"]
+
+[ext_resource type="Script" path="res://scenes/laser/laser.gd" id="1_1at8q"]
+[ext_resource type="Texture2D" uid="uid://vu0316u7dx8o" path="res://graphics/projectiles/blue.png" id="1_5s315"]
+[ext_resource type="Texture2D" uid="uid://2urcn2vnnf2f" path="res://graphics/lights/textures/circle.png" id="3_ko0yh"]
+[ext_resource type="AudioStream" uid="uid://b50yr52c3wfky" path="res://audio/laser.wav" id="4_8mccw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d04l2"]
+radius = 6.0
+height = 90.0
+
+[node name="Laser" type="Area2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_1at8q")
+speed = 2000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_d04l2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-36, 0)
+rotation = 1.5708
+texture = ExtResource("1_5s315")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(33, 0)
+color = Color(0.54902, 1, 1, 1)
+texture = ExtResource("3_ko0yh")
+texture_scale = 0.6
+
+[node name="SelfDestructTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_8mccw")
+volume_db = -12.976
+autoplay = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="SelfDestructTimer" to="." method="_on_timer_timeout"]

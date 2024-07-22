@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6tkxn32jxhnw"]
+
+[ext_resource type="PackedScene" uid="uid://dvixaba673d5k" path="res://scenes/container/item_container.tscn" id="1_f0y4j"]
+[ext_resource type="Script" path="res://scenes/objects/crate.gd" id="2_h537v"]
+[ext_resource type="Texture2D" uid="uid://coxh0eq7yatqg" path="res://graphics/objects/box/base.png" id="3_128eg"]
+[ext_resource type="Texture2D" uid="uid://bpvqkgsf5ww7q" path="res://graphics/objects/box/lid.png" id="4_w6v4h"]
+[ext_resource type="AudioStream" uid="uid://c51x27wj3dveq" path="res://audio/container_hit.mp3" id="5_xaeal"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxegf"]
+size = Vector2(402, 185)
+
+[node name="Crate" instance=ExtResource("1_f0y4j")]
+script = ExtResource("2_h537v")
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-1, 4.5)
+shape = SubResource("RectangleShape2D_lxegf")
+
+[node name="BaseSprite" parent="." index="1"]
+texture = ExtResource("3_128eg")
+
+[node name="LidSprite" parent="." index="2"]
+position = Vector2(0, 14)
+texture = ExtResource("4_w6v4h")
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPositions" index="0"]
+position = Vector2(-112, 13)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPositions" index="1"]
+position = Vector2(-60, 13)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPositions" index="2"]
+position = Vector2(-1, 13)
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnPositions" index="3"]
+position = Vector2(49, 13)
+
+[node name="Marker2D5" type="Marker2D" parent="SpawnPositions" index="4"]
+position = Vector2(107, 13)
+
+[node name="Marker2D6" type="Marker2D" parent="SpawnPositions" index="5"]
+position = Vector2(-59, -20)
+
+[node name="Marker2D7" type="Marker2D" parent="SpawnPositions" index="6"]
+position = Vector2(0, -20)
+
+[node name="Marker2D8" type="Marker2D" parent="SpawnPositions" index="7"]
+position = Vector2(50, -20)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
+stream = ExtResource("5_xaeal")
